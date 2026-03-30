@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stc - Choose Your Postpaid Plan</title>
+    
+    <style>
+        :root {
+            --stc-purple: #4f008c;
+            --stc-coral: #ff375e;
+            --light-bg: #f4f5f7;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        header {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: var(--stc-purple);
+            margin: 0;
+            font-size: 28px;
+        }
+
+        /* The container for SAS CI 360 to inject the banner */
+        #sas-upsell-spot {
+            max-width: 900px;
+            margin: 0 auto 20px auto;
+            min-height: 20px; /* Keeps layout stable */
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 300px;
+            padding: 30px 20px;
+            transition: transform 0.3s ease;
+            border-top: 5px solid var(--stc-purple);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .plan-card.highlight {
+            border-top: 5px solid var(--stc-coral);
+            transform: scale(1.05);
+        }
+
+        .plan-card.highlight:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .plan-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--stc-purple);
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn {
+            background-color: var(--stc-purple);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--stc-coral);
+        }
+
+        /* Styling for the simulated SAS banner */
+        .sas-banner {
+            background: linear-gradient(90deg, var(--stc-purple), var(--stc-coral));
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            animation: slideDown 0.5s ease-out;
+            box-shadow: 0 4px 15px rgba(255, 55, 94, 0.3);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>stc Postpaid Plans</h1>
+        <p>Choose the mofawtar plan that fits your lifestyle.</p>
+    </header>
+
+    <div id="sas-upsell-spot"></div>
+
+    <div class="pricing-container">
+        
+        <div class="plan-card">
+            <div class="plan-name">mofawtar basic</div>
+            <div class="plan-price">80.5 <span>SAR/mo</span></div>
+            <ul class="plan-features">
+                <li>5 GB Data</li>
+                <li>500 Local Minutes</li>
+                <li>Standard Support</li>
+            </ul>
+            <button class="btn" id="btn-mofawtar-basic">Select Plan</button>
+        </div>
+
+        <div class="plan-card">
+            <div class="plan-name">mofawtar 2</div>
+            <div class="plan-price">138 <span>SAR/mo</span></div>
+            <ul class="plan-features">
+                <li>25 GB Data</li>
+                <li>Unlimited Local Minutes</li>
+                <li>Social Media Data: 25GB</li>
+            </ul>
+            <button class="btn" id="btn-mofawtar-2">Select Plan</button>
+        </div>
+
+        <div class="plan-card highlight">
+            <div class="plan-name">mofawtar 4</div>
+            <div class="plan-price">517.5 <span>SAR/mo</span></div>
+            <ul class="plan-features">
+                <li>Unlimited 5G Data</li>
+                <li>Unlimited Local & Roaming</li>
+                <li>Free stc tv premium</li>
+            </ul>
+            <button class="btn" id="btn-mofawtar-4">Select Plan</button>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('btn-mofawtar-2').addEventListener('click', function() {
+            // This simulates what the SAS Web Task will do in real time
+            const spot = document.getElementById('sas-upsell-spot');
+            spot.innerHTML = `
+                <div class="sas-banner">
+                    ⚡ Wait! Love streaming? Upgrade to <strong>mofawtar 4</strong> today for Unlimited 5G Data and a free <strong>stc tv premium</strong> subscription! 
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+</html>
