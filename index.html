@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stc - Upgrade Your Life</title>
-    
+    <title>stc – Postpaid Plans</title>
+
+    <!-- ═══════════════════════════════════════════════
+         SAS CI 360 TAG — Corevision Training Tenant
+         tenantId: 2a7ea85c0b000164f7542674
+    ═══════════════════════════════════════════════ -->
     <link rel='preload' href='https://ingest-training.ci360.sas.com/js/ot2.min.js' as='script' />
     <script>
     (function(ci, a) {
@@ -16,100 +20,1033 @@
         ef.a = a || {};
       }();
     })
-    ('ci360', {
-      tenantId: '2a7ea85c0b000164f7542674'
-    });
+    ('ci360', { tenantId: '2a7ea85c0b000164f7542674' });
     </script>
-    <script async data-efname='ci360' src='https://ingest-training.ci360.sas.com/js/ot2.min.js' id='ob-script-async'>
-    </script>
+    <script async data-efname='ci360'
+      src='https://ingest-training.ci360.sas.com/js/ot2.min.js'
+      id='ob-script-async'></script>
+    <!-- ═══════════════════════════════════════════════ -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
     <style>
-        :root { --stc-purple: #4f008c; --stc-coral: #ff375e; --bg-color: #f4f5f7; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg-color); margin: 0; color: #333; }
-        header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        header h1 { color: var(--stc-purple); margin: 0; }
-        
-        /* The Views (Pages) */
-        .view { display: none; max-width: 800px; margin: 40px auto; text-align: center; animation: fadeIn 0.4s; }
-        .view.active { display: block; }
-        
-        /* Plan Cards */
-        .card-container { display: flex; justify-content: center; gap: 20px; }
-        .card { background: white; padding: 30px; border-radius: 10px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 5px solid var(--stc-purple); }
-        .price { font-size: 28px; font-weight: bold; margin: 15px 0; }
-        
-        /* Buttons */
-        .btn { background: var(--stc-purple); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; margin-top: 15px; }
-        .btn:hover { background: var(--stc-coral); }
-        .btn-outline { background: transparent; color: var(--stc-purple); border: 2px solid var(--stc-purple); }
-        
-        /* Checkout Box */
-        .checkout-box { background: white; padding: 40px; border-radius: 10px; text-align: left; }
-        .order-summary { background: #fafafa; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--stc-coral); }
-        
-        /* SAS Injection Spot */
-        #sas-addon-spot { margin: 20px auto; min-height: 5px; }
-        .sas-banner { background: var(--stc-coral); color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 15px rgba(255,55,94,0.3); animation: slideDown 0.5s; }
+        :root {
+            --purple:     #4f008c;
+            --purple-mid: #6b12b8;
+            --coral:      #ff375e;
+            --coral-dim:  #cc2a4a;
+            --gold:       #f5c842;
+            --bg:         #0a0a12;
+            --surface:    #12121e;
+            --surface2:   #1a1a2e;
+            --border:     rgba(255,255,255,0.07);
+            --text:       #e8e8f0;
+            --muted:      #7878a0;
+            --radius:     14px;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── DEMO CONTEXT BAR ─────────────────────── */
+        .demo-bar {
+            background: linear-gradient(90deg, var(--purple) 0%, var(--coral-dim) 100%);
+            padding: 8px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .demo-bar .badge {
+            background: rgba(0,0,0,0.25);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 11px;
+        }
+        .demo-bar .risk-high { color: var(--gold); font-weight: 700; }
+        .sas-dot {
+            width: 8px; height: 8px;
+            background: #4fffb0;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            box-shadow: 0 0 6px #4fffb0;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,100% { opacity: 1; }
+            50%      { opacity: 0.4; }
+        }
+
+        /* ─── HEADER ───────────────────────────────── */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: white;
+        }
+        .logo span { color: var(--coral); }
+        .header-nav {
+            display: flex;
+            gap: 28px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+        .header-nav a { color: inherit; text-decoration: none; cursor: pointer; }
+        .header-nav a:hover { color: white; }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+        .avatar {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--coral));
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 14px;
+        }
+
+        /* ─── STEP INDICATOR ───────────────────────── */
+        .steps-bar {
+            max-width: 640px;
+            margin: 36px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding: 0 20px;
+        }
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            position: relative;
+        }
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 60%;
+            width: 80%;
+            height: 1px;
+            background: var(--border);
+        }
+        .step-item.active:not(:last-child)::after,
+        .step-item.done:not(:last-child)::after {
+            background: var(--purple);
+        }
+        .step-num {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            transition: all 0.3s;
+        }
+        .step-item.active .step-num {
+            background: var(--purple);
+            border-color: var(--purple);
+            color: white;
+            box-shadow: 0 0 16px rgba(79,0,140,0.5);
+        }
+        .step-item.done .step-num {
+            background: var(--coral);
+            border-color: var(--coral);
+            color: white;
+        }
+        .step-label {
+            font-size: 11px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .step-item.active .step-label { color: var(--text); }
+
+        /* ─── VIEWS ────────────────────────────────── */
+        .view { display: none; padding: 40px 20px 80px; }
+        .view.active { display: block; animation: fadeUp 0.4s ease; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .view-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .view-sub {
+            text-align: center;
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+
+        /* ─── SAS INJECTION SPOT ───────────────────── */
+        /* SAS CI 360 injects the upsell banner here   */
+        /* Spot selector in CI 360: #sas-addon-spot    */
+        #sas-addon-spot {
+            max-width: 860px;
+            margin: 0 auto 28px;
+            min-height: 4px;
+        }
+
+        /* ─── PLAN CARDS ───────────────────────────── */
+        .plans-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .plan-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            width: 280px;
+            padding: 28px 24px 24px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+            overflow: hidden;
+        }
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--purple);
+        }
+        .plan-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(79,0,140,0.4);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+        }
+        .plan-card.featured {
+            border-color: rgba(255,55,94,0.35);
+            box-shadow: 0 0 0 1px rgba(255,55,94,0.15), 0 16px 40px rgba(0,0,0,0.4);
+        }
+        .plan-card.featured::before { background: var(--coral); }
+        .plan-card.featured:hover {
+            border-color: rgba(255,55,94,0.6);
+        }
+
+        .badge-featured {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: var(--coral);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 3px 9px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .plan-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .plan-tagline { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+
+        .plan-price {
+            font-family: 'Sora', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 4px;
+        }
+        .plan-price sub { font-size: 14px; font-weight: 400; color: var(--muted); }
+
+        .plan-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 20px 0;
+        }
+
+        .plan-features { list-style: none; margin-bottom: 24px; }
+        .plan-features li {
+            font-size: 13px;
+            padding: 7px 0;
+            color: #b0b0cc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .plan-features li::before {
+            content: '✓';
+            color: var(--coral);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ─── BUTTONS ──────────────────────────────── */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 13px 20px;
+            border-radius: 30px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.2s;
+            letter-spacing: 0.01em;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-mid) 100%);
+            color: white;
+            box-shadow: 0 4px 16px rgba(79,0,140,0.35);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--purple-mid) 0%, #8020d0 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(79,0,140,0.5);
+        }
+        .btn-featured {
+            background: linear-gradient(135deg, var(--coral) 0%, #e02050 100%);
+            color: white;
+            box-shadow: 0 4px 16px rgba(255,55,94,0.35);
+        }
+        .btn-featured:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255,55,94,0.5);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+        .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+        .btn-success {
+            background: linear-gradient(135deg, #00b859, #00944a);
+            color: white;
+            box-shadow: 0 4px 16px rgba(0,184,89,0.3);
+        }
+        .btn-success:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,184,89,0.45); }
+
+        /* ─── CUSTOMIZE VIEW ───────────────────────── */
+        .customize-layout {
+            max-width: 740px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 20px;
+        }
+        .addon-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .addon-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .addon-card:hover { border-color: rgba(255,255,255,0.15); }
+        .addon-card.selected {
+            border-color: var(--purple);
+            background: rgba(79,0,140,0.08);
+        }
+        .addon-icon { font-size: 22px; }
+        .addon-info { flex: 1; }
+        .addon-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+        .addon-desc { font-size: 12px; color: var(--muted); }
+        .addon-price { font-size: 14px; font-weight: 700; color: var(--coral); white-space: nowrap; }
+        .addon-toggle {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .addon-card.selected .addon-toggle {
+            background: var(--purple);
+            border-color: var(--purple);
+        }
+
+        /* ─── ORDER SUMMARY CARD ───────────────────── */
+        .order-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            position: sticky;
+            top: 84px;
+        }
+        .order-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .order-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 6px 0;
+            color: var(--muted);
+        }
+        .order-line span:last-child { color: var(--text); font-weight: 500; }
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: 700;
+            padding-top: 12px;
+            margin-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ─── CHECKOUT VIEW ────────────────────────── */
+        .checkout-layout {
+            max-width: 640px;
+            margin: 0 auto;
+            display: grid;
+            gap: 16px;
+        }
+        .checkout-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+        .checkout-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .pay-method {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            color: var(--muted);
+        }
+        .pay-method.active {
+            border-color: var(--purple);
+            background: rgba(79,0,140,0.1);
+            color: var(--text);
+        }
+        .pay-method .pay-icon { font-size: 20px; display: block; margin-bottom: 4px; }
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .field {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 14px;
+            color: var(--muted);
+            font-family: 'DM Sans', sans-serif;
+            cursor: not-allowed;
+        }
+        .field:full-width { grid-column: 1/-1; }
+        .security-note {
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 8px;
+        }
+        .security-note .lock { color: #4fffb0; }
+
+        /* ─── INJECTED BANNER (from SAS CI 360) ───── */
+        /* These styles are referenced by the Web Task  */
+        /* HTML that SAS injects into #sas-addon-spot   */
+        .sas-banner {
+            background: linear-gradient(110deg, var(--coral-dim) 0%, #8800cc 100%);
+            border: 1px solid rgba(255,55,94,0.3);
+            border-radius: var(--radius);
+            padding: 16px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: slideDown 0.4s ease;
+        }
+        .sas-banner .banner-icon { font-size: 28px; flex-shrink: 0; }
+        .sas-banner .banner-text { flex: 1; }
+        .sas-banner .banner-text strong { display: block; font-size: 15px; margin-bottom: 2px; }
+        .sas-banner .banner-text span { font-size: 13px; opacity: 0.85; }
+        .sas-banner .banner-cta {
+            background: white;
+            color: var(--coral-dim);
+            border: none;
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── SUCCESS ──────────────────────────────── */
+        #view-success { text-align: center; }
+        .success-icon {
+            width: 72px; height: 72px;
+            background: rgba(0,184,89,0.12);
+            border: 2px solid #00b859;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+            animation: scaleIn 0.4s ease;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.6); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+
+        /* ─── BACK LINK ────────────────────────────── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--muted);
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 28px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--text); }
+
+        /* ─── FOOTER ───────────────────────────────── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--muted);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* ─── UTILITY ──────────────────────────────── */
+        @media (max-width: 700px) {
+            .customize-layout { grid-template-columns: 1fr; }
+            .plans-grid { flex-direction: column; align-items: center; }
+            header { padding: 0 16px; }
+            .header-nav { display: none; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- DEMO CONTEXT BAR  (explains the customer persona to the client) -->
+    <div class="demo-bar">
+        <span>
+            <span class="sas-dot"></span>
+            SAS CI 360 — Live Demo &nbsp;|&nbsp;
+            <span class="badge">Tenant: Corevision Training</span>
+        </span>
+        <span>
+            Customer Persona: &nbsp;
+            <strong>Ahmed Al-Rashidi</strong> &nbsp;|&nbsp;
+            Segment: Heavy Data User &nbsp;|&nbsp;
+            Churn Risk: <span class="risk-high">HIGH ▲</span> &nbsp;|&nbsp;
+            Preferred Channel: Web + SMS
+        </span>
+    </div>
+
+    <!-- HEADER -->
     <header>
-        <h1>mystc portal</h1>
+        <div class="logo">stc<span>.</span></div>
+        <nav class="header-nav">
+            <a>Personal</a>
+            <a>Business</a>
+            <a>Devices</a>
+            <a>Support</a>
+        </nav>
+        <div class="header-right">
+            <span style="font-size:13px; color:var(--muted)">Ahmed Al-Rashidi</span>
+            <div class="avatar">A</div>
+        </div>
     </header>
 
-    <div id="view-plans" class="view active">
-        <h2>Select Your Plan</h2>
-        <div class="card-container">
-            <div class="card">
-                <h3>mofawtar basic</h3>
-                <div class="price">80.5 SAR</div>
-                <p>5GB Data | 500 Minutes</p>
-                <button class="btn btn-outline" onclick="goToView('view-customize')">Select</button>
-            </div>
-            <div class="card" style="border-top-color: var(--stc-coral); transform: scale(1.05);">
-                <h3 style="color: var(--stc-coral);">mofawtar 2</h3>
-                <div class="price">138 SAR</div>
-                <p>25GB Data | Unlimited Minutes</p>
-                <button class="btn" id="btn-select-mofawtar2" onclick="goToView('view-customize')">Select mofawtar 2</button>
-            </div>
+    <!-- STEP PROGRESS BAR -->
+    <div class="steps-bar" id="steps-bar">
+        <div class="step-item active" data-step="1">
+            <div class="step-num">1</div>
+            <div class="step-label">Choose Plan</div>
+        </div>
+        <div class="step-item" data-step="2">
+            <div class="step-num">2</div>
+            <div class="step-label">Customize</div>
+        </div>
+        <div class="step-item" data-step="3">
+            <div class="step-num">3</div>
+            <div class="step-label">Checkout</div>
         </div>
     </div>
 
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 1 — PLAN SELECTION
+         SAS Event: click on #btn-select-mofawtar2
+    ══════════════════════════════════════════════ -->
+    <div id="view-plans" class="view active">
+        <h2 class="view-title">Choose Your Postpaid Plan</h2>
+        <p class="view-sub">All plans include unlimited local calls and stc TV lite.</p>
+
+        <div class="plans-grid">
+
+            <!-- Plan: mofawtar basic -->
+            <div class="plan-card">
+                <div class="plan-name">mofawtar basic</div>
+                <div class="plan-tagline">Great for light usage</div>
+                <div class="plan-price">80.5 <sub>SAR/mo</sub></div>
+                <hr class="plan-divider">
+                <ul class="plan-features">
+                    <li>5 GB Local Data</li>
+                    <li>500 Local Minutes</li>
+                    <li>100 SMS</li>
+                    <li>stc TV Lite</li>
+                </ul>
+                <button class="btn btn-ghost" onclick="selectPlan('basic', 80.5)"
+                    id="btn-select-mofawtar-basic">
+                    Select Basic
+                </button>
+            </div>
+
+            <!-- Plan: mofawtar 2  ← SAS CI 360 Trigger Button -->
+            <div class="plan-card featured">
+                <span class="badge-featured">Most Popular</span>
+                <div class="plan-name">mofawtar 2</div>
+                <div class="plan-tagline">Best for streaming & social</div>
+                <div class="plan-price">138 <sub>SAR/mo</sub></div>
+                <hr class="plan-divider">
+                <ul class="plan-features">
+                    <li>25 GB 5G Data</li>
+                    <li>Unlimited Local Calls</li>
+                    <li>25 GB Social Media Data</li>
+                    <li>stc TV Lite included</li>
+                    <li>Free SIM delivery</li>
+                </ul>
+                <!--
+                    ╔══════════════════════════════════════════╗
+                    ║  SAS CI 360 WEB EVENT TARGET             ║
+                    ║  Event Name: stc Demo - Clicked Mofawtar 2 ║
+                    ║  Action: Click                           ║
+                    ║  CSS Selector: #btn-select-mofawtar2     ║
+                    ╚══════════════════════════════════════════╝
+                -->
+                <button class="btn btn-featured"
+                    id="btn-select-mofawtar2"
+                    onclick="selectPlan('mofawtar2', 138)">
+                    Select mofawtar 2
+                </button>
+            </div>
+
+            <!-- Plan: mofawtar 4 -->
+            <div class="plan-card">
+                <div class="plan-name">mofawtar 4</div>
+                <div class="plan-tagline">Unlimited freedom</div>
+                <div class="plan-price">517.5 <sub>SAR/mo</sub></div>
+                <hr class="plan-divider">
+                <ul class="plan-features">
+                    <li>Unlimited 5G Data</li>
+                    <li>Unlimited Local & Roaming</li>
+                    <li>stc TV Premium (free)</li>
+                    <li>Priority Network Access</li>
+                    <li>Free device protection</li>
+                </ul>
+                <button class="btn btn-primary" onclick="selectPlan('mofawtar4', 517.5)"
+                    id="btn-select-mofawtar4">
+                    Select mofawtar 4
+                </button>
+            </div>
+
+        </div>
+    </div><!-- /view-plans -->
+
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 2 — CUSTOMIZE / ADD-ONS
+         SAS CI 360 injects the upsell banner into:
+         #sas-addon-spot (Web Spot selector)
+    ══════════════════════════════════════════════ -->
     <div id="view-customize" class="view">
-        <h2>Customize Your Plan</h2>
-        <p>Review your selection and add extras.</p>
-        
+        <span class="back-link" onclick="goToView('view-plans', 1)">← Back to plans</span>
+        <h2 class="view-title">Customize Your Plan</h2>
+        <p class="view-sub">Optional add-ons to enhance your experience.</p>
+
+        <!--
+            ╔══════════════════════════════════════════╗
+            ║  SAS CI 360 WEB SPOT                     ║
+            ║  Spot Name: stc Demo - Addon Spot        ║
+            ║  CSS Selector: #sas-addon-spot           ║
+            ║  SAS injects the upsell banner here      ║
+            ╚══════════════════════════════════════════╝
+        -->
         <div id="sas-addon-spot"></div>
 
-        <div class="card" style="margin: 0 auto; width: 400px; text-align: left;">
-            <h3>mofawtar 2 Selected</h3>
-            <p>Do you want to proceed to payment?</p>
-            <button class="btn" onclick="goToView('view-checkout')">Proceed to Checkout</button>
-            <button class="btn btn-outline" style="margin-top: 10px;" onclick="goToView('view-plans')">Back</button>
-        </div>
-    </div>
+        <div class="customize-layout">
+            <!-- LEFT: Add-ons -->
+            <div class="addon-grid">
 
-    <div id="view-checkout" class="view">
-        <h2>Secure Checkout</h2>
-        <div class="checkout-box">
-            <div class="order-summary">
-                <strong>Total Due Today:</strong> 138 SAR <br>
-                <em>Includes SIM delivery & activation.</em>
+                <div class="addon-card" onclick="toggleAddon(this, 'roaming', 50)">
+                    <div class="addon-icon">✈️</div>
+                    <div class="addon-info">
+                        <div class="addon-name">5G Global Roaming Pass</div>
+                        <div class="addon-desc">Unlimited data in 40+ countries for 30 days</div>
+                    </div>
+                    <div class="addon-price">+50 SAR</div>
+                    <div class="addon-toggle"></div>
+                </div>
+
+                <div class="addon-card" onclick="toggleAddon(this, 'tv', 30)">
+                    <div class="addon-icon">📺</div>
+                    <div class="addon-info">
+                        <div class="addon-name">stc TV Premium</div>
+                        <div class="addon-desc">4K streaming, 200+ channels, exclusive content</div>
+                    </div>
+                    <div class="addon-price">+30 SAR</div>
+                    <div class="addon-toggle"></div>
+                </div>
+
+                <div class="addon-card" onclick="toggleAddon(this, 'cloud', 15)">
+                    <div class="addon-icon">☁️</div>
+                    <div class="addon-info">
+                        <div class="addon-name">stc Cloud Storage 100GB</div>
+                        <div class="addon-desc">Secure backup for photos, videos and documents</div>
+                    </div>
+                    <div class="addon-price">+15 SAR</div>
+                    <div class="addon-toggle"></div>
+                </div>
+
+                <div class="addon-card" onclick="toggleAddon(this, 'security', 20)">
+                    <div class="addon-icon">🛡️</div>
+                    <div class="addon-info">
+                        <div class="addon-name">Device Security Suite</div>
+                        <div class="addon-desc">Antivirus + VPN + identity protection</div>
+                    </div>
+                    <div class="addon-price">+20 SAR</div>
+                    <div class="addon-toggle"></div>
+                </div>
             </div>
-            <p>Enter your stc pay details or credit card to complete your order.</p>
-            <button class="btn" id="btn-confirm-order" onclick="alert('Order Confirmed! Demo Complete.')">Confirm Order & Pay</button>
+
+            <!-- RIGHT: Order Summary -->
+            <div class="order-card">
+                <h3>Order Summary</h3>
+                <div class="order-line">
+                    <span id="summary-plan-name">mofawtar 2</span>
+                    <span id="summary-plan-price">138 SAR</span>
+                </div>
+                <div id="summary-addons"></div>
+                <div class="order-total">
+                    <span>Total / month</span>
+                    <span id="summary-total">138 SAR</span>
+                </div>
+                <button class="btn btn-primary" style="margin-top:20px"
+                    onclick="goToView('view-checkout', 3)"
+                    id="btn-proceed-checkout">
+                    Proceed to Checkout →
+                </button>
+                <button class="btn btn-ghost" style="margin-top:10px"
+                    onclick="goToView('view-plans', 1)">
+                    Change Plan
+                </button>
+            </div>
         </div>
-    </div>
+    </div><!-- /view-customize -->
+
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 3 — CHECKOUT
+         SAS CI 360 Success Event:
+         click on #btn-confirm-order
+         (cancels the abandonment journey branch)
+    ══════════════════════════════════════════════ -->
+    <div id="view-checkout" class="view">
+        <span class="back-link" onclick="goToView('view-customize', 2)">← Back to customize</span>
+        <h2 class="view-title">Secure Checkout</h2>
+        <p class="view-sub">Complete your upgrade to get started immediately.</p>
+
+        <div class="checkout-layout">
+
+            <!-- Payment method selector -->
+            <div class="checkout-card">
+                <h3>Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="pay-method active" onclick="setPayMethod(this)">
+                        <span class="pay-icon">💳</span>
+                        Credit Card
+                    </div>
+                    <div class="pay-method" onclick="setPayMethod(this)">
+                        <span class="pay-icon">📱</span>
+                        stc pay
+                    </div>
+                    <div class="pay-method" onclick="setPayMethod(this)">
+                        <span class="pay-icon">🏦</span>
+                        STC Bill
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field" style="grid-column:1/-1">•••• •••• •••• 4582</div>
+                </div>
+                <div class="field-row">
+                    <div class="field">12 / 27</div>
+                    <div class="field">•••</div>
+                </div>
+                <p class="security-note">
+                    <span class="lock">🔒</span>
+                    Your payment is encrypted and processed securely.
+                </p>
+            </div>
+
+            <!-- Final order summary -->
+            <div class="checkout-card">
+                <h3>Final Order Summary</h3>
+                <div class="order-line">
+                    <span id="checkout-plan-name">mofawtar 2</span>
+                    <span id="checkout-plan-price">138 SAR</span>
+                </div>
+                <div id="checkout-addons"></div>
+                <div class="order-line" style="margin-top:8px">
+                    <span>Activation Fee</span>
+                    <span style="color:var(--coral)">FREE</span>
+                </div>
+                <div class="order-total">
+                    <span>Due Today</span>
+                    <span id="checkout-total">138 SAR</span>
+                </div>
+
+                <!--
+                    ╔══════════════════════════════════════════╗
+                    ║  SAS CI 360 SUCCESS / CONVERSION EVENT   ║
+                    ║  Event Name: stc Demo - Order Confirmed  ║
+                    ║  Action: Click                           ║
+                    ║  CSS Selector: #btn-confirm-order        ║
+                    ║  Purpose: Cancels the abandonment branch ║
+                    ╚══════════════════════════════════════════╝
+                -->
+                <button class="btn btn-success" style="margin-top:20px"
+                    id="btn-confirm-order"
+                    onclick="confirmOrder()">
+                    Confirm & Pay with stc pay
+                </button>
+            </div>
+
+        </div>
+    </div><!-- /view-checkout -->
+
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 4 — SUCCESS
+    ══════════════════════════════════════════════ -->
+    <div id="view-success" class="view">
+        <div class="success-icon">✓</div>
+        <h2 class="view-title">Order Confirmed!</h2>
+        <p class="view-sub" style="margin-bottom:8px">
+            Your <strong>mofawtar 2</strong> plan is being activated.
+        </p>
+        <p style="color:var(--muted); font-size:14px; margin-bottom:32px">
+            A confirmation SMS has been sent to your registered number.
+        </p>
+        <button class="btn btn-ghost" style="max-width:200px; margin:0 auto"
+            onclick="resetDemo()">
+            ↺ Restart Demo
+        </button>
+    </div><!-- /view-success -->
+
+
+    <footer>
+        <span>© 2025 Saudi Telecom Company. All rights reserved.</span>
+        <span>
+            <a href="#" style="color:var(--muted); text-decoration:none; margin-right:16px">Privacy Policy</a>
+            <a href="#" style="color:var(--muted); text-decoration:none">Terms of Use</a>
+        </span>
+    </footer>
+
 
     <script>
-        function goToView(viewId) {
+        /* ──────────────────────────────────────────
+           DEMO STATE
+        ─────────────────────────────────────────── */
+        let state = {
+            plan: null,
+            planPrice: 0,
+            addons: {},
+            addonTotal: 0
+        };
+
+        /* ──────────────────────────────────────────
+           VIEW NAVIGATION
+           Updates view + step indicator
+        ─────────────────────────────────────────── */
+        function goToView(viewId, stepNum) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
-            window.scrollTo(0,0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            updateSteps(stepNum);
+        }
+
+        function updateSteps(activeStep) {
+            document.querySelectorAll('.step-item').forEach(el => {
+                const n = parseInt(el.dataset.step);
+                el.classList.remove('active', 'done');
+                if (n < activeStep)  el.classList.add('done');
+                if (n === activeStep) el.classList.add('active');
+            });
+        }
+
+        /* ──────────────────────────────────────────
+           PLAN SELECTION
+           - btn-select-mofawtar2 triggers SAS Journey
+        ─────────────────────────────────────────── */
+        function selectPlan(planKey, price) {
+            state.plan = planKey;
+            state.planPrice = price;
+            state.addons = {};
+            state.addonTotal = 0;
+
+            const names = {
+                basic: 'mofawtar basic',
+                mofawtar2: 'mofawtar 2',
+                mofawtar4: 'mofawtar 4'
+            };
+
+            document.getElementById('summary-plan-name').textContent = names[planKey];
+            document.getElementById('summary-plan-price').textContent = price + ' SAR';
+            document.getElementById('checkout-plan-name').textContent = names[planKey];
+            document.getElementById('checkout-plan-price').textContent = price + ' SAR';
+            updateTotals();
+
+            goToView('view-customize', 2);
+        }
+
+        /* ──────────────────────────────────────────
+           ADD-ON TOGGLE
+        ─────────────────────────────────────────── */
+        function toggleAddon(card, key, price) {
+            card.classList.toggle('selected');
+            if (card.classList.contains('selected')) {
+                state.addons[key] = price;
+            } else {
+                delete state.addons[key];
+            }
+            state.addonTotal = Object.values(state.addons).reduce((a, b) => a + b, 0);
+            updateTotals();
+        }
+
+        function updateTotals() {
+            const total = state.planPrice + state.addonTotal;
+            document.getElementById('summary-total').textContent = total + ' SAR';
+            document.getElementById('checkout-total').textContent = total + ' SAR';
+
+            const addonLabels = {
+                roaming:  '5G Roaming Pass',
+                tv:       'stc TV Premium',
+                cloud:    'Cloud 100GB',
+                security: 'Device Security'
+            };
+            ['summary-addons', 'checkout-addons'].forEach(id => {
+                const el = document.getElementById(id);
+                el.innerHTML = Object.keys(state.addons).map(k =>
+                    `<div class="order-line"><span>${addonLabels[k]}</span><span>+${state.addons[k]} SAR</span></div>`
+                ).join('');
+            });
+        }
+
+        /* ──────────────────────────────────────────
+           PAYMENT METHOD TOGGLE
+        ─────────────────────────────────────────── */
+        function setPayMethod(el) {
+            document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        /* ──────────────────────────────────────────
+           CONFIRM ORDER
+           Fires SAS Success Event: #btn-confirm-order
+           This stops the abandonment branch in CI 360
+        ─────────────────────────────────────────── */
+        function confirmOrder() {
+            goToView('view-success', 3);
+        }
+
+        /* ──────────────────────────────────────────
+           RESET DEMO (for repeated live demos)
+        ─────────────────────────────────────────── */
+        function resetDemo() {
+            state = { plan: null, planPrice: 0, addons: {}, addonTotal: 0 };
+            document.querySelectorAll('.addon-card').forEach(c => c.classList.remove('selected'));
+            goToView('view-plans', 1);
         }
     </script>
 
