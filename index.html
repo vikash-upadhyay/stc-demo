@@ -3,200 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stc - Choose Your Postpaid Plan</title>
+    <title>stc - Upgrade Your Life</title>
     
     <style>
-        :root {
-            --stc-purple: #4f008c;
-            --stc-coral: #ff375e;
-            --light-bg: #f4f5f7;
-            --text-dark: #333;
-        }
+        :root { --stc-purple: #4f008c; --stc-coral: #ff375e; --bg-color: #f4f5f7; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg-color); margin: 0; color: #333; }
+        header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        header h1 { color: var(--stc-purple); margin: 0; }
+        
+        /* The Views (Pages) */
+        .view { display: none; max-width: 800px; margin: 40px auto; text-align: center; animation: fadeIn 0.4s; }
+        .view.active { display: block; }
+        
+        /* Plan Cards */
+        .card-container { display: flex; justify-content: center; gap: 20px; }
+        .card { background: white; padding: 30px; border-radius: 10px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 5px solid var(--stc-purple); }
+        .price { font-size: 28px; font-weight: bold; margin: 15px 0; }
+        
+        /* Buttons */
+        .btn { background: var(--stc-purple); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; margin-top: 15px; }
+        .btn:hover { background: var(--stc-coral); }
+        .btn-outline { background: transparent; color: var(--stc-purple); border: 2px solid var(--stc-purple); }
+        
+        /* Checkout Box */
+        .checkout-box { background: white; padding: 40px; border-radius: 10px; text-align: left; }
+        .order-summary { background: #fafafa; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--stc-coral); }
+        
+        /* SAS Injection Spot */
+        #sas-addon-spot { margin: 20px auto; min-height: 5px; }
+        .sas-banner { background: var(--stc-coral); color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 15px rgba(255,55,94,0.3); animation: slideDown 0.5s; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            margin: 0;
-            padding: 0;
-            color: var(--text-dark);
-            text-align: center;
-        }
-
-        header {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-
-        header h1 {
-            color: var(--stc-purple);
-            margin: 0;
-            font-size: 28px;
-        }
-
-        /* The container for SAS CI 360 to inject the banner */
-        #sas-upsell-spot {
-            max-width: 900px;
-            margin: 0 auto 20px auto;
-            min-height: 20px; /* Keeps layout stable */
-        }
-
-        .pricing-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-            flex-wrap: wrap;
-        }
-
-        .plan-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            width: 300px;
-            padding: 30px 20px;
-            transition: transform 0.3s ease;
-            border-top: 5px solid var(--stc-purple);
-        }
-
-        .plan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .plan-card.highlight {
-            border-top: 5px solid var(--stc-coral);
-            transform: scale(1.05);
-        }
-
-        .plan-card.highlight:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        .plan-name {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--stc-purple);
-            margin-bottom: 10px;
-        }
-
-        .plan-price {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .plan-price span {
-            font-size: 16px;
-            color: #777;
-        }
-
-        .plan-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .plan-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .btn {
-            background-color: var(--stc-purple);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 25px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background-color: var(--stc-coral);
-        }
-
-        /* Styling for the simulated SAS banner */
-        .sas-banner {
-            background: linear-gradient(90deg, var(--stc-purple), var(--stc-coral));
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            animation: slideDown 0.5s ease-out;
-            box-shadow: 0 4px 15px rgba(255, 55, 94, 0.3);
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>stc Postpaid Plans</h1>
-        <p>Choose the mofawtar plan that fits your lifestyle.</p>
+        <h1>mystc portal</h1>
     </header>
 
-    <div id="sas-upsell-spot"></div>
+    <div id="view-plans" class="view active">
+        <h2>Select Your Plan</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>mofawtar basic</h3>
+                <div class="price">80.5 SAR</div>
+                <p>5GB Data | 500 Minutes</p>
+                <button class="btn btn-outline" onclick="goToView('view-customize')">Select</button>
+            </div>
+            <div class="card" style="border-top-color: var(--stc-coral); transform: scale(1.05);">
+                <h3 style="color: var(--stc-coral);">mofawtar 2</h3>
+                <div class="price">138 SAR</div>
+                <p>25GB Data | Unlimited Minutes</p>
+                <button class="btn" id="btn-select-mofawtar2" onclick="goToView('view-customize')">Select mofawtar 2</button>
+            </div>
+        </div>
+    </div>
 
-    <div class="pricing-container">
+    <div id="view-customize" class="view">
+        <h2>Customize Your Plan</h2>
+        <p>Review your selection and add extras.</p>
         
-        <div class="plan-card">
-            <div class="plan-name">mofawtar basic</div>
-            <div class="plan-price">80.5 <span>SAR/mo</span></div>
-            <ul class="plan-features">
-                <li>5 GB Data</li>
-                <li>500 Local Minutes</li>
-                <li>Standard Support</li>
-            </ul>
-            <button class="btn" id="btn-mofawtar-basic">Select Plan</button>
-        </div>
+        <div id="sas-addon-spot"></div>
 
-        <div class="plan-card">
-            <div class="plan-name">mofawtar 2</div>
-            <div class="plan-price">138 <span>SAR/mo</span></div>
-            <ul class="plan-features">
-                <li>25 GB Data</li>
-                <li>Unlimited Local Minutes</li>
-                <li>Social Media Data: 25GB</li>
-            </ul>
-            <button class="btn" id="btn-mofawtar-2">Select Plan</button>
+        <div class="card" style="margin: 0 auto; width: 400px; text-align: left;">
+            <h3>mofawtar 2 Selected</h3>
+            <p>Do you want to proceed to payment?</p>
+            <button class="btn" onclick="goToView('view-checkout')">Proceed to Checkout</button>
+            <button class="btn btn-outline" style="margin-top: 10px;" onclick="goToView('view-plans')">Back</button>
         </div>
+    </div>
 
-        <div class="plan-card highlight">
-            <div class="plan-name">mofawtar 4</div>
-            <div class="plan-price">517.5 <span>SAR/mo</span></div>
-            <ul class="plan-features">
-                <li>Unlimited 5G Data</li>
-                <li>Unlimited Local & Roaming</li>
-                <li>Free stc tv premium</li>
-            </ul>
-            <button class="btn" id="btn-mofawtar-4">Select Plan</button>
+    <div id="view-checkout" class="view">
+        <h2>Secure Checkout</h2>
+        <div class="checkout-box">
+            <div class="order-summary">
+                <strong>Total Due Today:</strong> 138 SAR <br>
+                <em>Includes SIM delivery & activation.</em>
+            </div>
+            <p>Enter your stc pay details or credit card to complete your order.</p>
+            <button class="btn" id="btn-confirm-order" onclick="alert('Order Confirmed! Demo Complete.')">Confirm Order & Pay</button>
         </div>
-
     </div>
 
     <script>
-        document.getElementById('btn-mofawtar-2').addEventListener('click', function() {
-            // This simulates what the SAS Web Task will do in real time
-            const spot = document.getElementById('sas-upsell-spot');
-            spot.innerHTML = `
-                <div class="sas-banner">
-                    ⚡ Wait! Love streaming? Upgrade to <strong>mofawtar 4</strong> today for Unlimited 5G Data and a free <strong>stc tv premium</strong> subscription! 
-                </div>
-            `;
-        });
+        function goToView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            window.scrollTo(0,0);
+        }
     </script>
 
 </body>
