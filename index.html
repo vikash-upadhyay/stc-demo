@@ -25,7 +25,8 @@
         .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
         button { background: #4f008c; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; }
         button:hover { background: #6b12b8; }
-        /* Minimal styling for the injected banner */
+        
+        /* The banner will automatically adopt these styles once SAS injects it */
         .sas-banner { background: #ffeb3b; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #fbc02d; }
     </style>
 </head>
@@ -48,6 +49,7 @@
     </div>
 
     <script>
+        // Simple UI toggles - SAS tracks the button IDs independently of these functions
         function showCheckout() {
             document.getElementById('step2').style.display = 'block';
         }
